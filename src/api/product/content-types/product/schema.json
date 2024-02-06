@@ -4,18 +4,80 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product"
+    "displayName": "Product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "title": {
       "type": "string",
       "required": true,
       "maxLength": 71,
       "minLength": 3
+    },
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 110
+    },
+    "Discription": {
+      "type": "text",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Tshirts",
+        "Mug",
+        "hoodie",
+        "Glass",
+        "Bottles"
+      ],
+      "default": "Tshirts",
+      "required": true
+    },
+    "Size": {
+      "type": "string",
+      "maxLength": 10
+    },
+    "colour": {
+      "type": "enumeration",
+      "enum": [
+        "green",
+        "blue",
+        "white ",
+        "cyan ",
+        "maganta"
+      ],
+      "required": true
+    },
+    "price": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "availableQty": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "Order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "products"
     }
   }
 }
